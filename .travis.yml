@@ -11,3 +11,15 @@ before_install:
 # CI=true is used to suppress an exorbitant amount of verbose console outputs  
 script: 
   - docker run -e CI=true tsuweiquan/sec10-react-test npm run test -- --coverage
+
+after_success:
+  - docker build -t tsuweiquan/sec10-client ./client
+  - docker build -t tsuweiquan/sec10-server ./server
+  - docker build -t tsuweiquan/sec10-worker ./worker
+  - docker build -t tsuweiquan/sec10-nginx ./nginx
+  - echo "$DOCKER_PWD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push tsuweiquan/sec10-client
+  - docker push tsuweiquan/sec10-server
+  - docker push tsuweiquan/sec10-worker
+  - docker push tsuweiquan/sec10-nginx
+# now we upload the images to docker hub
