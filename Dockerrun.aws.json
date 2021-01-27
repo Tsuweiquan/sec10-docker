@@ -1,38 +1,43 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "ContainerDefinitions" : [ 
-        {
-            "name": "client",
-            "image": "tsuweiquan/sec10-client",
-            "hostname": "client",
-            "essential": false     // true means Mission critical. One of the Container must be true
-        },
-        {
-            "name": "worker",
-            "image": "tsuweiquan/sec10-worker",
-            "hostname": "worker",
-            "essential": false     // true means Mission critical. One of the Container must be true
-        },
-        {
-            "name": "server",
-            "image": "tsuweiquan/sec10-server",
-            "hostname": "api",
-            "essential": false     // true means Mission critical. One of the Container must be true
-        },
-        {
-            "name": "nginx",
-            "image": "tsuweiquan/sec10-nginx",
-            "hostname": "nginx",
-            "essential": true,     // true means Mission critical. One of the Container must be true
-            "portMappings": [       // port forwarding
-                {
-                    "hostPort": 80,
-                    "containerPort": 80
-                }
-            ],
-            "links": [ "client", "server" ] // connection links & unidirectional & uses name field to link
-        }
-     ]
-
-}
-  
+    "AWSEBDockerrunVersion":2,
+    "ContainerDefinitions":[
+       {
+          "name":"client",
+          "image":"tsuweiquan/sec10-client",
+          "hostname":"client",
+          "memory":128,
+          "essential":false
+       },
+       {
+          "name":"worker",
+          "image":"tsuweiquan/sec10-worker",
+          "hostname":"worker",
+          "memory":128,
+          "essential":false
+       },
+       {
+          "name":"server",
+          "image":"tsuweiquan/sec10-server",
+          "hostname":"api",
+          "memory":128,
+          "essential":false
+       },
+       {
+          "name":"nginx",
+          "image":"tsuweiquan/sec10-nginx",
+          "hostname":"nginx",
+          "essential":true,
+          "portMappings":[
+             {
+                "hostPort":80,
+                "containerPort":80
+             }
+          ],
+          "memory":128,
+          "links":[
+             "client",
+             "server"
+          ]
+       }
+    ]
+ }
