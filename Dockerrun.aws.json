@@ -1,43 +1,43 @@
 {
-    "AWSEBDockerrunVersion": 2,
-    "ContainerDefinitions":[
-       {
-          "name":"client",
-          "image":"tsuweiquan/sec10-client",
-          "hostname":"client",
-          "memory":128,
-          "essential": false
-       },
-       {
-          "name":"worker",
-          "image":"tsuweiquan/sec10-worker",
-          "hostname":"worker",
-          "memory": 128,
-          "essential": false
-       },
-       {
-          "name":"server",
-          "image":"tsuweiquan/sec10-server",
-          "hostname":"api",
-          "memory": 128,
-          "essential": false
-       },
-       {
-          "name":"nginx",
-          "image":"tsuweiquan/sec10-nginx",
-          "hostname":"nginx",
-          "essential": true,
-          "portMappings":[
-             {
-                "hostPort":80,
-                "containerPort":80
-             }
-          ],
-          "links":[
-             "client",
-             "server"
-          ],
-          "memory": 128
-       }
-    ]
+   "AWSEBDockerrunVersion": 2,
+   "ContainerDefinitions":[
+      {
+         "name":"client",
+         "image":"tsuweiquan/sec10-client",
+         "hostname":"client",
+         "memory":128,
+         "essential": false
+      },
+      {
+         "name":"worker",
+         "image":"tsuweiquan/sec10-worker",
+         "hostname":"worker",
+         "memory": 128,
+         "essential": false
+      },
+      {
+         "name":"server",
+         "image":"tsuweiquan/sec10-server",
+         "hostname":"api",
+         "memory": 128,
+         "essential": false
+      },
+      {
+         "name":"nginx",
+         "image":"tsuweiquan/sec10-nginx",
+         "hostname":"nginx",
+         "essential": true,
+         "portMappings":[
+            {
+               "hostPort":80,
+               "containerPort":80
+            }
+         ],
+         "links":[
+            "client",
+            "server"
+         ],
+         "memory": 128
+      }
+   ]
  }
